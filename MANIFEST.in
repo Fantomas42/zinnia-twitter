@@ -3,3 +3,4 @@ include LICENSE
 include versions.cfg
 include buildout.cfg
 include bootstrap.py
+exclude demo_zinnia_twitter/demo.db*
