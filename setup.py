@@ -31,5 +31,6 @@ setup(
 
     license=zinnia_twitter.__license__,
     include_package_data=True,
-    zip_safe=False
+    zip_safe=False,
+    install_requires=['tweepy']
 )
