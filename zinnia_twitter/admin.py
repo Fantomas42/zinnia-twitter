@@ -43,13 +43,12 @@ class EntryAdminTwitterMixin(object):
     make_tweet.short_description = _('Tweet entries selected')
 
 
-class EntryAdminTwitter(EntryAdmin,
-                        EntryAdminTwitterMixin):
+class EntryAdminTwitter(EntryAdminTwitterMixin,
+                        EntryAdmin):
     """
     Enrich the default EntryAdmin with post on Twitter action.
     """
     pass
-
 
 admin.site.unregister(Entry)
 admin.site.register(Entry, EntryAdminTwitter)
