@@ -15,14 +15,18 @@ class EntryAdminTwitterMixin(object):
     Mixin adding action to post an update about an Entry
     on Twitter.
     """
+    actions = ['make_tweet']
 
     def get_actions(self, request):
         """
-        Register post update on Twitter action.
+        Unregister post update on Twitter action
+        if required configuration is not set.
         """
         actions = super(EntryAdminTwitterMixin, self).get_actions(request)
-        if settings.USE_TWITTER:
-            actions.append('make_tweet')
+        if not actions:
+            return actions
+        if not settings.USE_TWITTER:
+            del actions['make_tweet']
         return actions
 
     def make_tweet(self, request, queryset):
@@ -43,13 +47,12 @@ class EntryAdminTwitterMixin(object):
     make_tweet.short_description = _('Tweet entries selected')
 
 
-class EntryAdminTwitter(EntryAdmin,
-                        EntryAdminTwitterMixin):
+class EntryAdminTwitter(EntryAdminTwitterMixin,
+                        EntryAdmin):
     """
     Enrich the default EntryAdmin with post on Twitter action.
     """
     pass
-
 
 admin.site.unregister(Entry)
 admin.site.register(Entry, EntryAdminTwitter)
