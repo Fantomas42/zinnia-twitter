@@ -28,7 +28,7 @@ September 2010. The actual authentification system is based on
 oAuth. That’s why now you need to set these 4 settings. If you don’t know
 how to get these information, follow this excellent tutorial at:
 
-http://jmillerinc.com/2010/05/31/twitter-from-the-command-line-in-python-using-oauth/
+http://talkfast.org/2010/05/31/twitter-from-the-command-line-in-python-using-oauth/
 
 Now in the admin, you can post an update containing your entry’s title and
 the shortened URL of your entry.
