@@ -30,6 +30,10 @@ how to get these information, follow this excellent tutorial at:
 
 http://talkfast.org/2010/05/31/twitter-from-the-command-line-in-python-using-oauth/
 
+You can replace the script mentionned in the step 3 of the tutorial by the
+``get_twitter_access`` management command provided by the application, once
+you have your CONSUMER_KEY and CONSUMER_SECRET.
+
 Now in the admin, you can post an update containing your entry’s title and
 the shortened URL of your entry.
 
