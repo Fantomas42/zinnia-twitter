@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from zinnia.models import Entry
 from zinnia.admin.entry import EntryAdmin
+from zinnia.settings import ENTRY_BASE_MODEL
 
 from zinnia_twitter import settings
 
@@ -54,5 +55,7 @@ class EntryAdminTwitter(EntryAdminTwitterMixin,
     """
     pass
 
-admin.site.unregister(Entry)
-admin.site.register(Entry, EntryAdminTwitter)
+
+if ENTRY_BASE_MODEL == 'zinnia.models_bases.entry.AbstractEntry':
+    admin.site.unregister(Entry)
+    admin.site.register(Entry, EntryAdminTwitter)
