@@ -23,6 +23,22 @@ Installation
   * ``TWITTER_ACCESS_KEY``
   * ``TWITTER_ACCESS_SECRET``
 
+* If you have enabled one of the ``zinnia-wysiwyg-xxx`` plugin widget, you
+  need to reconstruct the ``EntryAdmin`` class manually with the provided
+  mixins: ::
+
+    from zinnia.admin.entry import EntryAdmin
+    from zinnia_twitter.admin import EntryAdminTwitterMixin
+    from zinnia_ckeditor.admin import EntryAdminCKEditorMixin
+
+    class FinalEntryAdmin(EntryAdminCKEditorMixin,
+                          EntryAdminTwitterMixin,
+                          EntryAdmin):
+        pass
+
+    admin.site.unregister(Entry)
+    admin.site.register(Entry, FinalEntryAdmin)
+
 Note that the authentification for Twitter has changed since
 September 2010. The actual authentification system is based on
 oAuth. That’s why now you need to set these 4 settings. If you don’t know
