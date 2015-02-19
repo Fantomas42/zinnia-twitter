@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from zinnia.models import Entry
 from zinnia.admin.entry import EntryAdmin
+from zinnia.settings import ENTRY_BASE_MODEL
 
 from zinnia_twitter import settings
 
@@ -41,7 +42,7 @@ class EntryAdminTwitterMixin(object):
         for entry in queryset:
             short_url = entry.short_url
             message = '%s %s' % (entry.title[:139 - len(short_url)], short_url)
-            api.update_status(message)
+            api.update_status(status=message)
         self.message_user(
             request, _('The selected entries have been tweeted.'))
     make_tweet.short_description = _('Tweet entries selected')
@@ -54,5 +55,7 @@ class EntryAdminTwitter(EntryAdminTwitterMixin,
     """
     pass
 
-admin.site.unregister(Entry)
-admin.site.register(Entry, EntryAdminTwitter)
+
+if ENTRY_BASE_MODEL == 'zinnia.models_bases.entry.AbstractEntry':
+    admin.site.unregister(Entry)
+    admin.site.register(Entry, EntryAdminTwitter)
