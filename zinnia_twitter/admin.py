@@ -42,7 +42,7 @@ class EntryAdminTwitterMixin(object):
         for entry in queryset:
             short_url = entry.short_url
             message = '%s %s' % (entry.title[:139 - len(short_url)], short_url)
-            api.update_status(message)
+            api.update_status(status=message)
         self.message_user(
             request, _('The selected entries have been tweeted.'))
     make_tweet.short_description = _('Tweet entries selected')
